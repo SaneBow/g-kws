@@ -155,3 +155,12 @@ Labels.txt will give you the classification index numbers for silence, other & k
 Edit the script of tfl-stream.py so the path is correct to the tflite model you have just created in the models2 folder.
 `python3 tfl-stream.py`
 If the end part of the train fails due to pydot or other dependancies chaning --train to 0 will allow you to run the tests without a full retrain
+In kws-streaming/train you will find base_parser.py which has all the training arguments.
+I have added --agc which if above 0.0 you can set a different volume for the silence classification than the otherwise used background_volume
+Its called --agc as agc is a strange one where silence cab be louder than background as agc will ramp up but between the to you have full control.
+--save-audio will pull 10 training sets and output the fingerprints as wavs into the audio folder so you can actually see the audio being fed.
+
+The dataset really requires a minimum of 1000 samples for KW or you may need to up validation / testing % to get a result of 100
+The default is to --resample default=0.15 so with smaller datasets just copy/paste and clone as they will be resampled and create a more varied dataset.
+If you have copied and cloned a small dataset into many you may want to set --volume_resample which is an offset (+- the --volume_resample value)
+
