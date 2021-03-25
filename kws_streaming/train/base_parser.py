@@ -466,5 +466,11 @@ def base_parser():
       default=0.0,
       help='Silence level due to AGC for background range',
   )  
-
+  parser.add_argument(
+      '--save_audio',
+      type=int,
+      default=0,
+      help='Output sample batchs (10) of processed fingerprints to audio folder ',
+  )  
+  
   return parser

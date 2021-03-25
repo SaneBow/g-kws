@@ -8,6 +8,7 @@ $CMD_TRAIN \
 --unknown_percentage 50 \
 --background_volume 0.3 \
 --agc 0.9 \
+--save_audio 1 \
 --how_many_training_steps 2000,2000,2000,2000 \
 --learning_rate 0.001,0.0005,0.0001,0.00002 \
 --window_size_ms 40.0 \
@@ -15,7 +16,7 @@ $CMD_TRAIN \
 --mel_num_bins 40 \
 --dct_num_features 20 \
 --alsologtostderr \
---train 0 \
+--train 1 \
 --lr_schedule 'exp' \
 --use_spec_augment 1 \
 --time_masks_number 2 \

@@ -114,7 +114,7 @@ def train(flags):
     f.write('\n'.join(audio_processor.words_list))
 
   best_accuracy = 0.0
-
+  fps_count = 0
   # prepare parameters for exp learning rate decay
   training_steps_max = np.sum(training_steps_list)
   lr_init = learning_rates_list[0]
@@ -129,6 +129,16 @@ def train(flags):
         flags.batch_size, offset, flags, flags.background_frequency,
         flags.background_volume, flags.agc, time_shift_samples, 'training',
         flags.resample, flags.volume_resample, sess)
+    if flags.save_audio:
+      fps_count += 1
+      fp_count = 0
+      for fingerprint_wav in train_fingerprints:
+        fp_count += 1
+        fingerprint_wav = tf.cast(fingerprint_wav, tf.float32)
+        fingerprint_wav = tf.expand_dims(fingerprint_wav, 1)
+        fingerprint_wav = tf.audio.encode_wav(fingerprint_wav, flags.sample_rate)
+        ops = tf.io.write_file('audio/' + str(fps_count) + '-' + str(fp_count) + '.wav', fingerprint_wav)
+        sess.run(ops)
 
     if flags.lr_schedule == 'exp':
       learning_rate_value = lr_init * np.exp(-exp_rate * training_step)

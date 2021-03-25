@@ -35,6 +35,9 @@ pip3 install Cython==0.29.21
 pip3 install h5py==2.10.0
 pip3 install gdown
 pip3 install sounddevice
+pip3 install pydot
+pip3 install graphviz
+pip3 install absl-py
 gdown https://drive.google.com/uc?id=1WDG8Rbi0ph0sQ6TtD3ZGJdIN_WAnugLO
 pip3 install tensorflow-2.4.1-cp37-cp37m-linux_aarch64.whl
 sudo cp asound.conf /etc/

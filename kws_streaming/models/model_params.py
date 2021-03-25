@@ -82,6 +82,7 @@ class Params(object):
     self.causal_data_frame_padding = 0
     self.wav = 1
     self.agc = 0.0
+    self.save_audio = 0
 
 def att_mh_rnn_params():
   """Parameters for toy multihead attention model."""
