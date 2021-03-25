@@ -156,6 +156,7 @@ Edit the script of tfl-stream.py so the path is correct to the tflite model you 
 `python3 tfl-stream.py`
 If the end part of the train fails due to pydot or other dependancies chaning --train to 0 will allow you to run the tests without a full retrain
 In kws-streaming/train you will find base_parser.py which has all the training arguments.
+
 I have added --agc which if above 0.0 you can set a different volume for the silence classification than the otherwise used background_volume
 Its called --agc as agc is a strange one where silence cab be louder than background as agc will ramp up but between the to you have full control.
 --save-audio will pull 10 training sets and output the fingerprints as wavs into the audio folder so you can actually see the audio being fed.
