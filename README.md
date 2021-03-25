@@ -162,5 +162,5 @@ Its called --agc as agc is a strange one where silence cab be louder than backgr
 
 The dataset really requires a minimum of 1000 samples for KW or you may need to up validation / testing % to get a result of 100
 The default is to --resample default=0.15 so with smaller datasets just copy/paste and clone as they will be resampled and create a more varied dataset.
-If you have copied and cloned a small dataset into many you may want to set --volume_resample which is an offset (+- the --volume_resample value)
+If you have copied and cloned a small dataset into many you may also want to set --volume_resample which is an offset (+- the --volume_resample value)
 
