@@ -167,3 +167,8 @@ The default is to --resample default=0.15 so with smaller datasets just copy/pas
 It will work with less but the epoch validation will show zero.
 If you have copied and cloned a small dataset into many you may also want to set --volume_resample which is an offset (+- the --volume_resample value)
 
+--silence_percentage, --unknown_percentage is based on KW % and can be used to greatly effect result.
+If silence is being hit to much and seems to predominant then lower the %, if not enough then raise.
+Same for the unknown category and if KW is not accurate enough lower both to apply more traiing and resultant weight to KW.
+Also record a few 1:30 minute samples of your microphone silent with hiss and any constant background noise and add to the __background_noise_ folder
+
