@@ -139,7 +139,8 @@ def train(flags):
         fingerprint_wav = tf.audio.encode_wav(fingerprint_wav, flags.sample_rate)
         ops = tf.io.write_file('audio/' + str(fps_count) + '-' + str(fp_count) + '.wav', fingerprint_wav)
         sess.run(ops)
-
+    if fps_count > 10:
+      quit()
     if flags.lr_schedule == 'exp':
       learning_rate_value = lr_init * np.exp(-exp_rate * training_step)
     elif flags.lr_schedule == 'linear':
