@@ -189,7 +189,9 @@ def train(flags):
 
         total_accuracy += result[1]
         count = count + 1.0
-
+        
+      if count == 0.0:
+        count = 1.0
       total_accuracy = total_accuracy / count
       logging.info('Step %d: Validation accuracy = %.2f%% (N=%d)',
                    *(training_step, total_accuracy * 100, set_size))
@@ -221,6 +223,8 @@ def train(flags):
 
     total_accuracy += result[1]
     count = count + 1.0
+  if count == 0.0:
+    count = 1.0
   total_accuracy = total_accuracy / count
 
   logging.info('Final test accuracy = %.2f%% (N=%d)',

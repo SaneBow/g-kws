@@ -234,7 +234,7 @@ class AudioProcessor(object):
     for set_index in ['validation', 'testing', 'training']:
       set_size = len(self.data_index[set_index])
       silence_size = int(math.ceil(set_size * silence_percentage / 100))
-      print('Silence size ', silence_size)
+      print('Silence size ', silence_size, 'Set size', set_size)
       for _ in range(silence_size):
         self.data_index[set_index].append({
             'label': du.SILENCE_LABEL,
@@ -245,7 +245,7 @@ class AudioProcessor(object):
       unknown_size = int(math.ceil(set_size * unknown_percentage / 100))
       print('Unknown size ',unknown_size)
       self.data_index[set_index].extend(unknown_index[set_index][:unknown_size])
-      print(len(self.data_index[set_index]))
+      print('Set Size ', len(self.data_index[set_index]))
     # Make sure the ordering is random.
     for set_index in ['validation', 'testing', 'training']:
       random.shuffle(self.data_index[set_index])

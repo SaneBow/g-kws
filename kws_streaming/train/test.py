@@ -263,6 +263,8 @@ def tf_non_stream_model_accuracy(
     total_accuracy = total_accuracy + np.sum(
         predicted_labels == test_ground_truth)
     count = count + len(test_ground_truth)
+  if count == 0.0:
+    count = 1.0
   total_accuracy = total_accuracy / count
 
   logging.info('TF Final test accuracy on non stream model = %.2f%% (N=%d)',
