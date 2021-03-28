@@ -4,17 +4,17 @@ $CMD_TRAIN \
 --train_dir $MODELS_PATH/crnn_state/ \
 --wanted_words kw \
 --mel_upper_edge_hertz 7600 \
---how_many_training_steps 2800,2800,2800,2800 \
+--how_many_training_steps 1000,1000,1000,1000 \
 --learning_rate 0.001,0.0005,0.0001,0.00002 \
 --window_size_ms 40.0 \
 --window_stride_ms 20.0 \
 --mel_num_bins 40 \
 --dct_num_features 20 \
 --alsologtostderr \
---silence_percentage 20 \
+--silence_percentage 25 \
 --unknown_percentage 50 \
---background_volume 0.2 \
---agc 0.4 \
+--background_volume 0.3 \
+--resample 0.0 \
 --train 1 \
 --lr_schedule 'exp' \
 --use_spec_augment 1 \

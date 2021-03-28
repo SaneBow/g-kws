@@ -549,7 +549,7 @@ class AudioProcessor(object):
     return len(self.data_index[mode])
 
   def get_data(self, how_many, offset, flags, background_frequency,
-               background_volume_range, agc_volume_range, time_shift, mode, resample_offset,
+               background_volume_range, silence_volume_range, time_shift, mode, resample_offset,
                volume_augmentation_offset, sess):
     """Gather samples from the data set, applying transformations as needed.
 
@@ -653,8 +653,8 @@ class AudioProcessor(object):
           background_volume = np.random.uniform(0, background_volume_range)
         else:
           background_volume = 0
-        if sample['label'] == du.SILENCE_LABEL and agc_volume_range > 0.0:
-          background_volume = np.random.uniform(0, agc_volume_range)
+        if sample['label'] == du.SILENCE_LABEL and silence_volume_range > 0.0:
+          background_volume = np.random.uniform(0, silence_volume_range)
       else:
         background_reshaped = np.zeros([desired_samples, 1])
         background_volume = 0

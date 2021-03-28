@@ -22,6 +22,7 @@ tfm.silence(1, 0.1, 0.01)
 tfm.silence(-1, 0.1, 0.01)
 tfm.build_file(args.input, 'silence-strip.wav')
 stat = sox.file_info.stat('silence-strip.wav')
+print(stat)
 duration = stat['Length (seconds)']
 
 

@@ -461,7 +461,7 @@ def base_parser():
       help='Use data in wav format, otherwise use numpy',
   )
   parser.add_argument(
-      '--agc',
+      '--silence_volume',
       type=float,
       default=0.0,
       help='Silence level due to AGC for background range',

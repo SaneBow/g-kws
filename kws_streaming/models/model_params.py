@@ -81,7 +81,7 @@ class Params(object):
     self.verbosity = logging.INFO
     self.causal_data_frame_padding = 0
     self.wav = 1
-    self.agc = 0.0
+    self.silence_volume = 0.0
     self.save_audio = 0
 
 def att_mh_rnn_params():

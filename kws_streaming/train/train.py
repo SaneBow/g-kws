@@ -127,7 +127,7 @@ def train(flags):
     # Pull the audio samples we'll use for training.
     train_fingerprints, train_ground_truth = audio_processor.get_data(
         flags.batch_size, offset, flags, flags.background_frequency,
-        flags.background_volume, flags.agc, time_shift_samples, 'training',
+        flags.background_volume, flags.silence_volume, time_shift_samples, 'training',
         flags.resample, flags.volume_resample, sess)
     if flags.save_audio:
       fps_count += 1
