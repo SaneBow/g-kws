@@ -12,7 +12,7 @@ $CMD_TRAIN \
 --resample 0.0 \
 --alsologtostderr \
 --split_data 0 \
---wanted_words silence,kw,notkw \
+--wanted_words silence,notkw,kw \
 --train 1 \
 --lr_schedule 'exp' \
 --use_spec_augment 1 \

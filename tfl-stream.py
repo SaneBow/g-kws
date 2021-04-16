@@ -60,16 +60,16 @@ def sd_callback(rec, frames, time, status):
       # Use `tensor()` in order to get a pointer to the tensor.
       inputs1[s] = interpreter1.get_tensor(output_details1[s]['index'])
      
-    if np.argmax(output_data[0]) == 1:
+    if np.argmax(output_data[0]) == 2:
       if kw_count > 3:
         print(output_data[0][2], kw_count, kw_sum)
         not_kw_count = 0
       kw_count += 1
-      kw_sum = kw_sum + output_data[0][1]
+      kw_sum = kw_sum + output_data[0][2]
       if kw_sum > 100:
         print("Kw threshold hit")
         kw_hit = True
-    elif np.argmax(output_data[0]) != 1:
+    elif np.argmax(output_data[0]) != 2:
       if kw_hit:
         for s in range(len(input_details1)):
           inputs1[s] = np.zeros(input_details1[s]['shape'], dtype=np.float32)
