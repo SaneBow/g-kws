@@ -15,7 +15,7 @@ sd.default.dtype= ('float32', 'float32')
 
 
 # Load the TFLite model and allocate tensors.
-interpreter1 = tf.lite.Interpreter(model_path="/home/pi/google-kws/models2/crnn_state_mfcc_op/quantize_opt_for_size_tflite_stream_state_external/stream_state_external.tflite")
+interpreter1 = tf.lite.Interpreter(model_path="/home/stuart/g-kws/models2/cnn/tflite_stream_state_external/stream_state_external.tflite")
 interpreter1.allocate_tensors()
 
 # Get input and output tensors.
@@ -60,16 +60,16 @@ def sd_callback(rec, frames, time, status):
       # Use `tensor()` in order to get a pointer to the tensor.
       inputs1[s] = interpreter1.get_tensor(output_details1[s]['index'])
      
-    if np.argmax(output_data[0]) == 2:
+    if np.argmax(output_data[0]) == 1:
       if kw_count > 3:
         print(output_data[0][2], kw_count, kw_sum)
         not_kw_count = 0
       kw_count += 1
-      kw_sum = kw_sum + output_data[0][2]
+      kw_sum = kw_sum + output_data[0][1]
       if kw_sum > 100:
         print("Kw threshold hit")
         kw_hit = True
-    elif np.argmax(output_data[0]) != 2:
+    elif np.argmax(output_data[0]) != 1:
       if kw_hit:
         for s in range(len(input_details1)):
           inputs1[s] = np.zeros(input_details1[s]['shape'], dtype=np.float32)
