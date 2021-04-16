@@ -260,7 +260,8 @@ class AudioProcessor(object):
     self.word_to_index[du.SILENCE_LABEL] = du.SILENCE_INDEX
 
   def validate_dir_structure(self, data_dir, dirs):
-    for dir_name in dirs + [du.BACKGROUND_NOISE_DIR_NAME]:
+    #for dir_name in dirs + [du.BACKGROUND_NOISE_DIR_NAME]:
+    for dir_name in dirs:
       sub_dir_name = os.path.join(data_dir, dir_name)
       if not os.path.isdir(sub_dir_name):
         raise IOError('Directory is not found ' + sub_dir_name)
