@@ -27,7 +27,7 @@ Then as in https://qengineering.eu/install-tensorflow-2.4.0-on-raspberry-64-os.h
 sudo apt-get install gfortran liblapack-dev \
 libhdf5-dev libc-ares-dev libeigen3-dev \
 libatlas-base-dev libopenblas-dev libblas-dev \
-libportaudio2 portaudio19-dev unzip
+libportaudio2 portaudio19-dev unzip python3-sklearn python3-sklearn-lib python3-pygraphviz
 
 pip3 install --upgrade setuptools
 pip3 install pybind11
