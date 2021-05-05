@@ -16,7 +16,7 @@ Install numpy 1.19.5 `pip install numpy==1.19.5` before installing as possible t
 ```
 sudo apt install python3-dev python3-pip python3-venv git
 git clone https://github.com/StuartIanNaylor/g-kws.git
-cd google-kws
+cd g-kws
 python3 -m venv --system-site-packages ./venv
 source ./venv/bin/activate
 pip3 install --upgrade pip
