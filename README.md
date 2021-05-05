@@ -15,7 +15,7 @@ First we will do it all in a python venv
 Install numpy 1.19.5 `pip install numpy==1.19.5` before installing as possible to get into dependency hell between tensorflow & h5py
 ```
 sudo apt install python3-dev python3-pip python3-venv git
-git clone https://github.com/StuartIanNaylor/google-kws.git
+git clone https://github.com/StuartIanNaylor/g-kws.git
 cd google-kws
 python3 -m venv --system-site-packages ./venv
 source ./venv/bin/activate
