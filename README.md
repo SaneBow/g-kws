@@ -127,7 +127,7 @@ build --host_cxxopt=-std=c++14
 ```
 Before we run we will fix the missing lib location with a sym link.
 ```
-sudo ln -s /home/pi/google-kws/venv/lib/python3.7/site-packages/tensorflow/python/_pywrap_tensorflow_internal.so /usr/lib/lib_pywrap_tensorflow_internal.so
+ sudo ln -s /home/pi/g-kws/venv/lib/python3.7/site-packages/tensorflow/python/_pywrap_tensorflow_internal.so /usr/lib/lib_pywrap_tensorflow_internal.so
 ```
 Now as on https://github.com/tensorflow/addons
 ```
