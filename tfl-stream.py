@@ -1,7 +1,22 @@
 import tensorflow as tf
 import sounddevice as sd
+import soundfile as sf
 import numpy as np
 import threading
+import queue
+import argparse
+
+q = queue.Queue()
+
+parser = argparse.ArgumentParser()
+parser.add_argument(
+            '-d', '--dump', type=str,
+                help='dump recording to a file')
+parser.add_argument(
+            '-m', '--model', required=True, type=str,
+                help='dump recording to a file')
+args = parser.parse_args()
+
 
 # Parameters
 word_threshold = 7.5
@@ -15,7 +30,7 @@ sd.default.dtype= ('float32', 'float32')
 
 
 # Load the TFLite model and allocate tensors.
-interpreter1 = tf.lite.Interpreter(model_path="/home/stuart/g-kws/models2/cnn/tflite_stream_state_external/stream_state_external.tflite")
+interpreter1 = tf.lite.Interpreter(model_path=args.model)
 interpreter1.allocate_tensors()
 
 # Get input and output tensors.
@@ -32,6 +47,8 @@ not_kw_count = 0
 kw_sum = 0
 kw_hit = False
 def sd_callback(rec, frames, time, status):
+    if args.dump:
+        q.put(rec.copy())
     global input_details1
     global output_details1
     global inputs1
@@ -81,11 +98,23 @@ def sd_callback(rec, frames, time, status):
       not_kw_count += 1
 
     
+try:
+  # Start streaming from microphone
+  with sf.SoundFile(args.dump, mode='w', samplerate=sample_rate,
+                                channels=num_channels) as file:
+      with sd.InputStream(channels=num_channels,
+                          samplerate=sample_rate,
+                          blocksize=int(sample_rate * rec_duration),
+                          callback=sd_callback):
+          if args.dump:
+              while True:
+                  file.write(q.get())
+          else:
+              threading.Event().wait()
 
-
-# Start streaming from microphone
-with sd.InputStream(channels=num_channels,
-                    samplerate=sample_rate,
-                    blocksize=int(sample_rate * rec_duration),
-                    callback=sd_callback):
-    threading.Event().wait()
+except KeyboardInterrupt:
+    if args.dump:
+      print('\nRecording dumped: ' + repr(args.dump))
+    parser.exit('')
+except Exception as e:
+    parser.exit(type(e).__name__ + ': ' + str(e))
