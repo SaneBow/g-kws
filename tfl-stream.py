@@ -100,21 +100,23 @@ def sd_callback(rec, frames, time, status):
     
 try:
   # Start streaming from microphone
-  with sf.SoundFile(args.dump, mode='w', samplerate=sample_rate,
-                                channels=num_channels) as file:
-      with sd.InputStream(channels=num_channels,
-                          samplerate=sample_rate,
-                          blocksize=int(sample_rate * rec_duration),
-                          callback=sd_callback):
-          if args.dump:
-              while True:
-                  file.write(q.get())
-          else:
-              threading.Event().wait()
+  if args.dump:
+      file = sf.SoundFile(args.dump, mode='w', samplerate=sample_rate,
+                                channels=num_channels)
+  with sd.InputStream(channels=num_channels,
+                      samplerate=sample_rate,
+                      blocksize=int(sample_rate * rec_duration),
+                      callback=sd_callback):
+      if args.dump:
+          while True:
+              file.write(q.get())
+      else:
+          threading.Event().wait()
 
 except KeyboardInterrupt:
     if args.dump:
       print('\nRecording dumped: ' + repr(args.dump))
+      file.close()
     parser.exit('')
 except Exception as e:
     parser.exit(type(e).__name__ + ': ' + str(e))
